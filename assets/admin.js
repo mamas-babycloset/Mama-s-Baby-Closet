@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const table = document.getElementById('admin-product-list');
         if (table) {
             table.innerHTML = products.map((p, index) => {
-                const isDemo = index < 8; // First 8 are default demo products
+                const isDemo = false; // Allow deleting demo products too
                 return `
                  <tr class="border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors">
                      <td class="py-4">
@@ -110,10 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Make functions global for inline onclick
     window.deleteProduct = (id, isDemo) => {
-        if (isDemo) {
-            showToast('Cannot delete demo product 🚫');
-            return;
-        }
         if (confirm('Are you sure you want to delete this product?')) {
             products = products.filter(p => p.id !== id);
             saveProducts();
