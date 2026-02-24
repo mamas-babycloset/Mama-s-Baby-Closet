@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | Mama's Baby Closet</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#FFD6E0',
+                            blue: '#C1E1DC',
+                            yellow: '#FFEC99',
+                            dark: '#4A4A4A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body class="bg-[#FAFAFA] text-gray-700 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="glass-panel sticky top-0 z-50 py-4 px-6 md:px-12 flex justify-between items-center transition-all">
+        <a href="index.html" class="flex items-center gap-3 hover-lift">
+            <span class="text-3xl">🧸</span>
+            <span class="cute-font text-2xl font-bold gradient-text hidden sm:block">Mama's Baby Closet</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 font-medium">
+            <a href="index.html" class="nav-link text-gray-500 hover:text-gray-800 transition-colors">Home</a>
+            <a href="shop.html" class="nav-link text-gray-500 hover:text-gray-800 transition-colors">Shop</a>
+            <a href="login.html"
+                class="admin-nav-link hidden nav-link text-gray-500 hover:text-gray-800 transition-colors">Admin</a>
+            <a href="cart.html" class="relative group active text-gray-800">
+                <svg class="w-6 h-6 text-brand-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                </svg>
+                <span id="cart-badge"
+                    class="absolute -top-2 -right-2 bg-pink-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+            </a>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden text-gray-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </button>
+    </nav>
+
+    <div id="mobile-menu" class="hidden md:hidden glass-panel absolute w-full py-4 px-6 flex flex-col gap-4 z-40">
+        <a href="index.html" class="text-gray-600">Home</a>
+        <a href="shop.html" class="text-gray-600">Shop</a>
+        <a href="login.html" class="admin-nav-link text-gray-600 hidden">Admin</a>
+        <a href="cart.html" class="text-gray-800 font-medium flex items-center gap-2">View Cart <svg
+                class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
+            </svg></a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-16 px-6 md:px-16 container mx-auto fade-in">
+        <h1 class="cute-font text-4xl font-bold text-gray-800 mb-8 border-b border-gray-100 pb-4">Your Shopping Cart 🛍️
+        </h1>
+
+        <div class="flex flex-col lg:flex-row gap-10">
+            <!-- Cart Items -->
+            <div id="cart-items-container" class="w-full lg:w-2/3 space-y-4">
+                <!-- Rendered by JS -->
+                <div
+                    class="flex flex-col items-center justify-center py-20 text-gray-400 bg-white rounded-3xl shadow-sm border border-gray-50 h-[400px]">
+                    <p class="text-6xl mb-4 animate-bounce">🛒</p>
+                    <p class="text-lg">Your cart is currently empty.</p>
+                    <a href="shop.html"
+                        class="mt-6 btn-primary px-8 py-3 rounded-full font-bold shadow-md hover-lift">Keep Shopping
+                        🎀</a>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="w-full lg:w-1/3">
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-brand-pink/30 sticky top-24">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Order Summary ✨</h2>
+
+                    <div class="space-y-4 mb-6 text-sm text-gray-600">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-xs font-bold mb-2">Shipping Region (Sri
+                                Lanka)</label>
+                            <select id="shipping-region"
+                                class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:border-pink-300 text-sm"
+                                onchange="renderCart()">
+                                <option value="0" selected>Select your region...</option>
+                                <option value="250">Colombo 1-15 (LKR 250)</option>
+                                <option value="350">Colombo Suburbs (LKR 350)</option>
+                                <option value="350">Greater Colombo (LKR 350)</option>
+                                <option value="400">Gampaha District & Kaluthara District (LKR 400)</option>
+                                <option value="500">Other (LKR 500)</option>
+                            </select>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Subtotal</span>
+                            <span id="subtotal" class="font-medium text-gray-800">LKR 0.00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Shipping</span>
+                            <span id="shipping-cost" class="font-medium text-gray-800">LKR 0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-100 pt-6 mb-8 flex justify-between items-center">
+                        <span class="text-lg font-bold text-gray-800">Total</span>
+                        <span id="total" class="cute-font text-3xl font-bold text-pink-500">LKR 0.00</span>
+                    </div>
+
+                    <div class="space-y-4 mb-6">
+                        <h3 class="text-md font-bold text-gray-800 border-b border-gray-100 pb-2">Delivery Details</h3>
+                        <div>
+                            <label class="block text-gray-700 text-xs font-bold mb-1" for="buyer-name">Buyer Name
+                                *</label>
+                            <input type="text" id="buyer-name"
+                                class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:border-pink-300 text-sm"
+                                placeholder="Enter full name" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-xs font-bold mb-1" for="shipping-address">Shipping
+                                Address *</label>
+                            <textarea id="shipping-address"
+                                class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:border-pink-300 text-sm h-20 resize-none"
+                                placeholder="Enter complete address" required></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-xs font-bold mb-1" for="contact-number">Contact
+                                Number *</label>
+                            <input type="tel" id="contact-number"
+                                class="w-full bg-white border border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:border-pink-300 text-sm"
+                                placeholder="Ex: 07XXXXXXXX" required>
+                        </div>
+                    </div>
+
+                    <button id="checkout-btn"
+                        class="w-full btn-primary py-4 rounded-full font-bold text-lg shadow-xl hover-lift flex items-center justify-center gap-2 opacity-50 cursor-not-allowed"
+                        disabled>
+                        <span>Checkout Now</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </button>
+
+                    <div
+                        class="mt-4 p-4 bg-brand-pink/20 rounded-xl border border-brand-pink/30 flex items-start gap-3">
+                        <span class="text-xl">🚚</span>
+                        <div>
+                            <p class="text-sm font-bold text-gray-800">Standard Delivery</p>
+                            <p class="text-xs text-gray-600 mt-1">Please note that delivery will take <strong
+                                    class="text-pink-600">3-5 working days</strong> from the date of order confirmation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-center text-gray-400 mt-4 flex items-center justify-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                            </path>
+                        </svg>
+                        Safe & secure checkout. 100% money back guarantee.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 pt-16 pb-8 border-t border-gray-100 mt-auto">
+        <div class="text-center text-sm text-gray-400">
+            &copy; 2026 Mama's Baby Closet. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/script.js"></script>
+    <script>
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('subtotal');
+            const totalEl = document.getElementById('total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-20 text-gray-400 bg-white rounded-3xl shadow-sm border border-gray-50 h-[400px]">
+                        <p class="text-6xl mb-4 animate-bounce hover-lift">🛒</p>
+                        <p class="text-lg">Your cart is currently empty.</p>
+                        <a href="shop.html" class="mt-6 btn-primary px-8 py-3 rounded-full font-bold shadow-md hover-lift">Keep Shopping 🎀</a>
+                    </div>
+                `;
+                subtotalEl.textContent = 'LKR 0.00';
+                if (document.getElementById('shipping-cost')) document.getElementById('shipping-cost').textContent = 'LKR 0.00';
+                checkoutBtn.disabled = true;
+                checkoutBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                return;
+            }
+
+            checkoutBtn.disabled = false;
+            checkoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+            let subtotal = 0;
+
+            container.innerHTML = cart.map(item => {
+                subtotal += item.price * item.quantity;
+                return `
+                <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-sm border border-gray-50 flex items-center gap-6 hover-lift fade-in relative group transition-all">
+                    <!-- Remove btn -->
+                    <button onclick="removeFromCart(${item.id})" class="absolute top-4 right-4 text-gray-300 hover:text-red-400 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                    
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden bg-gray-50 flex-shrink-0">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-grow flex flex-col sm:flex-row justify-between pr-8">
+                        <div>
+                            <p class="text-xs text-brand-pink font-bold uppercase tracking-wider mb-1">${item.category}</p>
+                            <h3 class="font-medium text-gray-800 text-lg sm:text-xl">${item.name}</h3>
+                            <p class="text-gray-500 font-bold mt-1">LKR ${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="flex items-center gap-3 mt-4 sm:mt-0 bg-gray-50 rounded-full px-2 py-1 fit-content h-10 w-28">
+                            <button onclick="updateQty(${item.id}, -1)" class="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:bg-white hover:shadow-sm font-bold">-</button>
+                            <span class="w-4 text-center text-sm font-bold text-gray-800">${item.quantity}</span>
+                            <button onclick="updateQty(${item.id}, 1)" class="w-8 h-8 rounded-full flex items-center justify-center text-pink-500 hover:bg-white hover:shadow-sm font-bold">+</button>
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+
+            const regionSelect = document.getElementById('shipping-region');
+            const shippingCost = regionSelect ? parseFloat(regionSelect.value) : 0;
+            const total = subtotal + shippingCost;
+
+            subtotalEl.textContent = 'LKR ' + subtotal.toFixed(2);
+            const shippingEl = document.getElementById('shipping-cost');
+            if (shippingEl) shippingEl.textContent = shippingCost > 0 ? 'LKR ' + shippingCost.toFixed(2) : 'Select Region';
+            totalEl.textContent = 'LKR ' + total.toFixed(2);
+        }
+
+        function updateQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                    showToast('Item removed 🗑️');
+                }
+                saveCart();
+                renderCart();
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            saveCart();
+            renderCart();
+            showToast('Item removed 🗑️');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCart();
+
+            document.getElementById('checkout-btn').addEventListener('click', () => {
+                const name = document.getElementById('buyer-name').value.trim();
+                const address = document.getElementById('shipping-address').value.trim();
+                const contact = document.getElementById('contact-number').value.trim();
+                const regionSelect = document.getElementById('shipping-region');
+
+                if (regionSelect.value === '0') {
+                    showToast('Please select a shipping region 🚚');
+                    return;
+                }
+
+                if (!name || !address || !contact) {
+                    showToast('Please fill all delivery details! ⚠️');
+                    return;
+                }
+
+                // Calculate totals
+                let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                let shippingCost = parseFloat(regionSelect.value);
+                let total = subtotal + shippingCost;
+
+                const newOrder = {
+                    id: Date.now(),
+                    date: new Date().toLocaleString(),
+                    buyerName: name,
+                    address: address,
+                    contact: contact,
+                    items: [...cart],
+                    totalInfo: {
+                        subtotal: subtotal,
+                        shipping: shippingCost,
+                        total: total
+                    },
+                    status: 'Pending'
+                };
+
+                // orders array is global from script.js
+                orders.push(newOrder);
+                saveOrders();
+
+                alert('Thank you for your order, ' + name + '! It has been sent to the admin dashboard. 💕');
+
+                // Reset cart
+                cart = [];
+                saveCart();
+
+                // Clear fields
+                document.getElementById('buyer-name').value = '';
+                document.getElementById('shipping-address').value = '';
+                document.getElementById('contact-number').value = '';
+                regionSelect.value = '0';
+
+                renderCart();
+                showToast('Order Placed Successfully ✨');
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Mama's Baby Closet</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#FFD6E0',
+                            blue: '#C1E1DC',
+                            yellow: '#FFEC99',
+                            dark: '#4A4A4A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body
+    class="bg-[#FAFAFA] text-gray-700 min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
+    <!-- Decorative Blurs -->
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-pink/30 rounded-full blur-3xl mix-blend-multiply"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-brand-blue/30 rounded-full blur-3xl mix-blend-multiply">
+    </div>
+
+    <a href="index.html"
+        class="absolute top-8 left-8 flex items-center gap-2 text-gray-400 hover:text-gray-800 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+            </path>
+        </svg>
+        <span>Back to Store</span>
+    </a>
+
+    <div
+        class="glass-panel w-full max-w-md rounded-[2.5rem] p-10 z-10 shadow-2xl border border-white fade-in text-center relative">
+        <div
+            class="w-20 h-20 bg-brand-pink/20 rounded-full mx-auto flex items-center justify-center text-4xl mb-6 shadow-sm border border-brand-pink/30 animate-float">
+            👑</div>
+
+        <h1 class="cute-font text-3xl font-bold text-gray-800 mb-2">Admin Portal</h1>
+        <p class="text-sm text-gray-500 mb-8">Sign in with `admin` / `admin` to access dashboard.</p>
+
+        <form id="login-form" class="space-y-5 text-left">
+            <div>
+                <label class="block text-sm font-bold text-gray-700 mb-1 ml-4 shadow-sm" for="username">Username</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">👤
+                    </div>
+                    <input type="text" id="username"
+                        class="w-full bg-white/50 backdrop-blur-md border border-gray-200 rounded-full py-3 pl-12 pr-4 focus:outline-none focus:border-pink-300 focus:ring-2 focus:ring-pink-100 transition-all"
+                        placeholder="Enter username..." required>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold text-gray-700 mb-1 ml-4 shadow-sm" for="password">Password</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">🔒
+                    </div>
+                    <input type="password" id="password"
+                        class="w-full bg-white/50 backdrop-blur-md border border-gray-200 rounded-full py-3 pl-12 pr-4 focus:outline-none focus:border-pink-300 focus:ring-2 focus:ring-pink-100 transition-all"
+                        placeholder="Enter password..." required>
+                </div>
+            </div>
+
+            <p id="error-msg" class="text-red-500 text-xs text-center hidden font-medium">Invalid credentials! Nice try.
+                🧸</p>
+
+            <button type="submit"
+                class="w-full btn-primary py-4 rounded-full font-bold text-lg shadow-xl hover-lift mt-6">
+                Login ✨
+            </button>
+        </form>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // If already admin, redirect to dashboard
+            if (localStorage.getItem('mamasBabyAdmin') === 'true') {
+                window.location.href = 'admin.html';
+            }
+
+            document.getElementById('login-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const user = document.getElementById('username').value;
+                const pass = document.getElementById('password').value;
+
+                if (user === 'admin' && pass === 'admin') {
+                    localStorage.setItem('mamasBabyAdmin', 'true');
+                    showToast('Welcome back, Admin! 👑');
+                    setTimeout(() => {
+                        window.location.href = 'admin.html';
+                    }, 1000);
+                } else {
+                    document.getElementById('error-msg').classList.remove('hidden');
+                    setTimeout(() => {
+                        document.getElementById('error-msg').classList.add('hidden');
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

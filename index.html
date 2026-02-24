@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mama's Baby Closet | Adorable Baby Clothes & Accessories</title>
+    <meta name="description"
+        content="Discover the cutest, softest, and most adorable baby clothes, nursery items, and accessories at Mama's Baby Closet.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#FFD6E0',
+                            blue: '#C1E1DC',
+                            yellow: '#FFEC99',
+                            dark: '#4A4A4A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body class="bg-[#FAFAFA] text-gray-700">
+
+    <!-- Navbar -->
+    <nav class="glass-panel sticky top-0 z-50 py-4 px-6 md:px-12 flex justify-between items-center transition-all">
+        <a href="index.html" class="flex items-center gap-3 hover-lift">
+            <!-- Using emoji as fallback if image missing -->
+            <span class="text-3xl">🧸</span>
+            <span class="cute-font text-2xl font-bold gradient-text">Mama's Baby Closet</span>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-8 font-medium">
+            <a href="index.html" class="nav-link active text-gray-700">Home</a>
+            <a href="shop.html" class="nav-link text-gray-500 hover:text-gray-800 transition-colors">Shop</a>
+            <a href="login.html" class="nav-link text-gray-500 hover:text-gray-800 transition-colors">Admin</a>
+            <a href="cart.html" class="relative group">
+                <svg class="w-6 h-6 text-gray-600 group-hover:text-brand-pink transition-colors" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                </svg>
+                <span id="cart-badge"
+                    class="absolute -top-2 -right-2 bg-pink-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+            </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-gray-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu List -->
+    <div id="mobile-menu" class="hidden md:hidden glass-panel absolute w-full py-4 px-6 flex flex-col gap-4 z-40">
+        <a href="index.html" class="text-gray-800 font-medium">Home</a>
+        <a href="shop.html" class="text-gray-600">Shop</a>
+        <a href="login.html" class="text-gray-600">Admin</a>
+        <a href="cart.html" class="text-gray-600 flex items-center gap-2">View Cart <svg class="w-5 h-5" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
+            </svg></a>
+    </div>
+
+    <!-- Hero Section -->
+    <header
+        class="relative px-6 md:px-16 py-20 flex flex-col-reverse md:flex-row items-center justify-between min-h-[80vh] overflow-hidden">
+        <!-- Text -->
+        <div class="w-full md:w-1/2 z-10 fade-in text-center md:text-left mt-10 md:mt-0">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-brand-dark leading-tight mb-6 hidden">Welcome to Mama's
+                Baby Closet</h1>
+            <h1 class="cute-font text-5xl md:text-6xl text-brand-dark leading-tight mb-4">
+                Dress Your <span class="gradient-text">Little Ones</span> in Pure Joy! 👶
+            </h1>
+            <p class="text-lg text-gray-500 mb-8 max-w-lg mx-auto md:mx-0">
+                Discover our handpicked collection of soft, adorable, and high-quality clothes for your babies and
+                toddlers.
+            </p>
+            <a href="shop.html"
+                class="inline-block btn-primary px-8 py-4 rounded-full font-bold text-lg shadow-xl hover-lift">
+                Shop Collection 🎀
+            </a>
+        </div>
+
+        <!-- Image Blob area -->
+        <div class="w-full md:w-1/2 relative z-10 flex justify-center fade-in">
+            <div class="relative w-72 h-72 md:w-96 md:h-96">
+                <!-- Cute blob background -->
+                <div class="absolute inset-0 bg-brand-pink opacity-50 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] animate-float"
+                    style="filter: blur(20px);"></div>
+                <!-- Image -->
+                <img src="assets/baby_hero_1771843310439.png" alt="Baby Clothes Collection"
+                    class="relative z-10 w-full h-full object-cover rounded-full border-8 border-white shadow-2xl hover-lift"
+                    onerror="this.src='https://images.unsplash.com/photo-1519781542704-957ff19eff00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+            </div>
+
+            <!-- Floating Elements -->
+            <div class="absolute top-10 right-10 text-4xl animate-float" style="animation-delay: 1s;">✨</div>
+            <div class="absolute bottom-10 left-10 text-4xl animate-float" style="animation-delay: 2s;">🍼</div>
+        </div>
+    </header>
+
+    <!-- Categories -->
+    <section class="py-16 px-6 md:px-16 bg-white">
+        <h2 class="cute-font text-3xl md:text-4xl text-center font-bold text-brand-dark mb-12">Shop by Category</h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <a href="shop.html"
+                class="group block text-center p-6 rounded-3xl bg-brand-pink/20 hover:bg-brand-pink/40 transition-colors hover-lift cursor-pointer">
+                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🌙</div>
+                <h3 class="font-bold text-gray-700">Night wear</h3>
+            </a>
+            <a href="shop.html"
+                class="group block text-center p-6 rounded-3xl bg-brand-blue/20 hover:bg-brand-blue/40 transition-colors hover-lift cursor-pointer">
+                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🦕</div>
+                <h3 class="font-bold text-gray-700">For Boys</h3>
+            </a>
+            <a href="shop.html"
+                class="group block text-center p-6 rounded-3xl bg-purple-100 hover:bg-purple-200 transition-colors hover-lift cursor-pointer">
+                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">👗</div>
+                <h3 class="font-bold text-gray-700">For Girls</h3>
+            </a>
+            <a href="shop.html"
+                class="group block text-center p-6 rounded-3xl bg-brand-yellow/20 hover:bg-brand-yellow/40 transition-colors hover-lift cursor-pointer">
+                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🎀</div>
+                <h3 class="font-bold text-gray-700">Accessories</h3>
+            </a>
+            <a href="shop.html"
+                class="group block text-center p-6 rounded-3xl bg-green-50 hover:bg-green-100 transition-colors hover-lift cursor-pointer">
+                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🍼</div>
+                <h3 class="font-bold text-gray-700">Essentials</h3>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-16 px-6 md:px-16" id="featured-products">
+        <div class="flex justify-between items-end mb-10">
+            <h2 class="cute-font text-3xl md:text-4xl font-bold text-brand-dark">New Arrivals 💕</h2>
+            <a href="shop.html" class="text-pink-500 font-medium hover:underline hidden md:block">See All Products
+                &rarr;</a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="product-grid">
+            <!-- Rendered by JS -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 pt-16 pb-8 border-t border-gray-100 mt-20">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+            <div>
+                <a href="#" class="flex items-center gap-2 mb-4">
+                    <span class="text-2xl">🧸</span>
+                    <span class="cute-font text-xl font-bold gradient-text">Mama's Baby Closet</span>
+                </a>
+                <p class="text-gray-500 text-sm">We provide the softest and most adorable items for your little
+                    sunshine. Bringing smiles to babies and parents everywhere.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-gray-800 mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-500">
+                    <li><a href="index.html" class="hover:text-pink-400">Home</a></li>
+                    <li><a href="shop.html" class="hover:text-pink-400">Shop All</a></li>
+                    <li><a href="#" class="hover:text-pink-400">About Us</a></li>
+                    <li><a href="#" class="hover:text-pink-400">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-gray-800 mb-4">Newsletter</h4>
+                <p class="text-gray-500 text-sm mb-3">Subscribe to get special offers and updates!</p>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="Your email"
+                        class="px-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:border-pink-300 w-full text-sm">
+                    <button class="btn-primary px-4 py-2 rounded-full text-sm whitespace-nowrap">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-sm text-gray-400 pt-8 border-t border-gray-100">
+            &copy; 2026 Mama's Baby Closet. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/script.js"></script>
+    <script>
+        // Render featured products (first 4)
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('product-grid');
+            if (grid) {
+                const featured = products.slice(0, 4);
+                grid.innerHTML = featured.map(p => `
+                     <div class="bg-white rounded-3xl p-4 shadow-sm border border-gray-50 hover-lift group relative">
+                         <!-- Star badge -->
+                         <div class="absolute top-6 right-6 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-bold text-yellow-500 flex items-center gap-1 z-10 shadow-sm">
+                            ⭐ ${p.rating}
+                         </div>
+                         <!-- Image -->
+                         <div class="aspect-square rounded-2xl overflow-hidden mb-4 bg-gray-50 relative">
+                             <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                         </div>
+                         <!-- Info -->
+                         <div class="px-2">
+                             <p class="text-xs text-brand-pink font-bold uppercase tracking-wider mb-1">${p.category}</p>
+                             <h3 class="font-medium text-gray-800 mb-2 truncate">${p.name}</h3>
+                             <div class="flex justify-between items-center">
+                                 <span class="font-bold text-lg text-gray-800">LKR ${p.price.toFixed(2)}</span>
+                                 <button onclick="addToCart(${p.id})" class="w-10 h-10 rounded-full bg-pink-50 text-pink-500 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors">
+                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                 </button>
+                             </div>
+                         </div>
+                     </div>
+                 `).join('');
+            }
+        });
+    </script>
+</body>
+
+</html>

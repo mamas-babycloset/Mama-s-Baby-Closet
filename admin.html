@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Mama's Baby Closet</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#FFD6E0',
+                            blue: '#C1E1DC',
+                            yellow: '#FFEC99',
+                            dark: '#4A4A4A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body class="bg-[#FAFAFA] text-gray-700 font-sans hidden" id="admin-body"> <!-- Hidden until JS validates -->
+
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-lg border-r border-gray-100 flex flex-col transition-all">
+            <div class="h-20 flex items-center justify-center border-b border-gray-100 px-6">
+                <a href="index.html" class="flex items-center gap-2 hover-lift">
+                    <span class="text-2xl">🧸</span>
+                    <span class="cute-font text-lg font-bold gradient-text">Mama's Admin</span>
+                </a>
+            </div>
+
+            <nav class="flex-grow p-4 space-y-2 overflow-y-auto">
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 bg-pink-50 text-pink-600 rounded-2xl font-medium transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                        </path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-50 hover:text-gray-800 rounded-2xl font-medium transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    Products
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-50 hover:text-gray-800 rounded-2xl font-medium transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    Customers
+                </a>
+                <a href="index.html"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-50 hover:text-gray-800 rounded-2xl font-medium transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Live Store
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-gray-100">
+                <button id="admin-logout"
+                    class="w-full flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50 rounded-2xl font-medium transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                        </path>
+                    </svg>
+                    Logout Admin
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto bg-[#FAFAFA] p-8 fade-in">
+            <header class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="cute-font text-3xl font-bold text-gray-800">Dashboard Overview 👋</h1>
+                    <p class="text-sm text-gray-500 mt-1">Welcome back, Admin! Here is what's happening at your store.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button
+                        class="bg-white p-3 rounded-full border border-gray-100 shadow-sm text-gray-500 hover:text-pink-500 transition-colors relative">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                            </path>
+                        </svg>
+                        <span class="absolute top-2 right-2 w-2 h-2 bg-pink-500 rounded-full animate-ping"></span>
+                        <span class="absolute top-2 right-2 w-2 h-2 bg-pink-500 rounded-full"></span>
+                    </button>
+                    <div
+                        class="h-10 w-10 rounded-full bg-brand-pink/30 border border-brand-pink flex items-center justify-center text-xl shadow-sm">
+                        👑</div>
+                </div>
+            </header>
+
+            <!-- Statistics Cards -->
+            <section id="admin-stats" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Rendered by Admin.js -->
+            </section>
+
+            <!-- Recent Products Panel -->
+            <section class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">Manage Products 🎀</h2>
+                    <button
+                        onclick="document.getElementById('add-product-modal').classList.remove('hidden'); document.getElementById('add-product-modal').classList.add('flex')"
+                        class="btn-primary hover-lift px-5 py-2 rounded-full font-bold text-sm shadow-md flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Add Product
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="text-gray-400 text-xs uppercase tracking-widest border-b border-gray-100">
+                                <th class="pb-3 font-medium">Product</th>
+                                <th class="pb-3 font-medium">Category</th>
+                                <th class="pb-3 font-medium">Price</th>
+                                <th class="pb-3 font-medium">Rating</th>
+                                <th class="pb-3 font-medium text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-product-list" class="text-sm">
+                            <!-- Rendered by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Orders Panel -->
+            <section class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8 mt-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">Recent Orders 📦</h2>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="text-gray-400 text-xs uppercase tracking-widest border-b border-gray-100">
+                                <th class="pb-3 font-medium">Order ID</th>
+                                <th class="pb-3 font-medium">Buyer Info</th>
+                                <th class="pb-3 font-medium">Shipping Address</th>
+                                <th class="pb-3 font-medium">Items</th>
+                                <th class="pb-3 font-medium">Total</th>
+                                <th class="pb-3 font-medium text-right">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-order-list" class="text-sm">
+                            <!-- Rendered by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="add-product-modal"
+        class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-50 hidden items-center justify-center fade-in">
+        <div
+            class="bg-white rounded-[2rem] shadow-xl border border-gray-100 p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <h2 class="cute-font text-2xl font-bold text-gray-800 mb-6 border-b border-gray-100 pb-4">Add New Product ✨
+            </h2>
+            <form id="add-product-form" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1" for="prod-name">Product Name *</label>
+                    <input type="text" id="prod-name"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:border-pink-300"
+                        required>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1" for="prod-category">Category *</label>
+                        <select id="prod-category"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:border-pink-300"
+                            required>
+                            <option value="Night wear">Night wear</option>
+                            <option value="For Boys">For Boys</option>
+                            <option value="For Girls">For Girls</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Essentials">Essentials</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1" for="prod-price">Price (LKR) *</label>
+                        <input type="number" id="prod-price" min="0" step="0.01"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:border-pink-300"
+                            required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Size Ranges *</label>
+                    <div class="flex flex-wrap gap-2" id="prod-sizes">
+                        <label
+                            class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200 text-sm cursor-pointer hover:bg-gray-100">
+                            <input type="checkbox" value="0-3 months" class="rounded text-pink-500 focus:ring-pink-400">
+                            <span>0-3 months</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200 text-sm cursor-pointer hover:bg-gray-100">
+                            <input type="checkbox" value="3-6 months" class="rounded text-pink-500 focus:ring-pink-400">
+                            <span>3-6 months</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200 text-sm cursor-pointer hover:bg-gray-100">
+                            <input type="checkbox" value="6-9 months" class="rounded text-pink-500 focus:ring-pink-400">
+                            <span>6-9 months</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200 text-sm cursor-pointer hover:bg-gray-100">
+                            <input type="checkbox" value="9-12 months"
+                                class="rounded text-pink-500 focus:ring-pink-400"> <span>9-12 months</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200 text-sm cursor-pointer hover:bg-gray-100">
+                            <input type="checkbox" value="12-18 months"
+                                class="rounded text-pink-500 focus:ring-pink-400"> <span>12-18 months</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200 text-sm cursor-pointer hover:bg-gray-100">
+                            <input type="checkbox" value="18-24 months"
+                                class="rounded text-pink-500 focus:ring-pink-400"> <span>18-24 months</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1" for="prod-image">Product Image (JPG)
+                        *</label>
+                    <input type="file" id="prod-image" accept=".jpg, .jpeg"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 text-sm focus:outline-none focus:border-pink-300 file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-pink-50 file:text-pink-600 hover:file:bg-pink-100"
+                        required>
+                </div>
+
+                <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-gray-100">
+                    <button type="button"
+                        onclick="document.getElementById('add-product-modal').classList.add('hidden'); document.getElementById('add-product-modal').classList.remove('flex')"
+                        class="px-5 py-2.5 rounded-full font-bold text-gray-500 hover:bg-gray-100 transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="btn-primary hover-lift px-6 py-2.5 rounded-full font-bold shadow-md">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/script.js"></script>
+    <script src="assets/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Auth Guard
+            if (localStorage.getItem('mamasBabyAdmin') !== 'true') {
+                window.location.href = 'login.html';
+            } else {
+                document.getElementById('admin-body').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>
