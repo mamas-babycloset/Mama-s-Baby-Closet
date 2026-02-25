@@ -1,15 +1,8 @@
-const defaultProducts = [
-  { id: 1, name: "Cozy Bear Onesie", price: 2500.00, image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4", category: "Night wear", rating: 4.8, sizes: ["0-3 months", "3-6 months"] },
-  { id: 2, name: "Pastel Dream Dress", price: 3400.00, image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8", category: "For Girls", rating: 4.6, sizes: ["3-6 months", "6-9 months"] },
-  { id: 3, name: "Bunny Ear Beanie", price: 1250.00, image: "https://images.unsplash.com/photo-1544400599-2a912bbbc24c", category: "Accessories", rating: 4.9, sizes: ["0-3 months"] },
-  { id: 4, name: "Soft Cloud Booties", price: 1800.00, image: "https://images.unsplash.com/photo-1596870230751-ebdfce98ec42", category: "Essentials", rating: 4.7, sizes: ["6-9 months", "9-12 months"] },
-  { id: 5, name: "Gentle Knit Blanket", price: 4500.00, image: "https://images.unsplash.com/photo-1582239423985-e6593a5eb40c", category: "Essentials", rating: 4.5, sizes: ["12-18 months"] },
-  { id: 6, name: "Dinosaur Romper", price: 2200.00, image: "https://images.unsplash.com/photo-1503919005314-16e788bc26ce", category: "For Boys", rating: 4.3, sizes: ["6-9 months", "9-12 months"] },
-  { id: 7, name: "Little Sailor Suit", price: 2990.00, image: "https://images.unsplash.com/photo-16196ff315cf3-605a92a54b38", category: "For Boys", rating: 4.9, sizes: ["12-18 months", "18-24 months"] },
-  { id: 8, name: "Starry Night Swaddle", price: 1500.00, image: "https://images.unsplash.com/photo-1555529733-0e67056058ab", category: "Night wear", rating: 4.8, sizes: ["0-3 months"] }
-];
+const defaultProducts = [];
 
 let products = JSON.parse(localStorage.getItem('mamasBabyProducts')) || [];
+// Auto-remove the old demo products which had id <= 10
+products = products.filter(p => p.id > 10);
 if (products.length === 0) {
   products = defaultProducts;
   localStorage.setItem('mamasBabyProducts', JSON.stringify(products));
@@ -102,13 +95,4 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileMenu.classList.toggle('hidden');
     });
   }
-
-  // Admin Check for nav link visibility
-  const isAdmin = localStorage.getItem('mamasBabyAdmin') === 'true';
-  const adminNavLinks = document.querySelectorAll('.admin-nav-link');
-  adminNavLinks.forEach(link => {
-    if (isAdmin) {
-      link.classList.remove('hidden');
-    }
-  });
 });
